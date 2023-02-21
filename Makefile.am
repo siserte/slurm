@@ -1,7 +1,7 @@
 
 AUTOMAKE_OPTIONS = foreign
 ACLOCAL_AMFLAGS = -I auxdir
-SUBDIRS    = auxdir src testsuite doc etc
+SUBDIRS    = auxdir src etc
 
 pkginclude_HEADERS =		\
 	slurm/pmi.h		\
