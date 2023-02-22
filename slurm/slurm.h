@@ -671,6 +671,10 @@ enum select_jobdata_type {
 					 * cleaning state or not. */
 	SELECT_JOBDATA_NETWORK	= 23,	/* data-> char * network info */
 	SELECT_JOBDATA_RELEASED	= 24,	/* if job resources have been released */
+
+	//DMR-Sergio
+	SELECT_JOBDATA_INFO,
+	SELECT_JOBDATA_ACTION,
 };
 
 enum select_nodedata_type {
@@ -4379,6 +4383,11 @@ extern int slurm_get_select_nodeinfo(dynamic_plugin_data_t *nodeinfo,
 				     enum select_nodedata_type data_type,
 				     enum node_states state,
 				     void *data);
+
+//DMR-Sergio
+extern int slurm_get_select_jobinfo(dynamic_plugin_data_t *jobinfo,
+				    enum select_jobdata_type data_type,
+				    void *data);
 
 /*****************************************************************************\
  *	SLURM PARTITION CONFIGURATION READ/PRINT/UPDATE FUNCTIONS

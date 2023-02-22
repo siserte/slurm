@@ -59,3 +59,13 @@ extern int slurm_get_select_nodeinfo(dynamic_plugin_data_t *nodeinfo,
 {
 	return select_g_select_nodeinfo_get(nodeinfo, data_type, state, data);
 }
+
+/*
+ * DMR - Sergio * 
+ */
+extern int slurm_get_select_jobinfo(dynamic_plugin_data_t *jobinfo,
+				    enum select_jobdata_type data_type,
+				    void *data)
+{
+	return select_g_select_jobinfo_get(jobinfo, data_type, data);
+}

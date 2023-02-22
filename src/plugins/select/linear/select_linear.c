@@ -4073,17 +4073,79 @@ extern int select_p_select_jobinfo_set(select_jobinfo_t *jobinfo,
 	return SLURM_SUCCESS;
 }
 
+
+
+/*
+ * DMR - Sergio * 
+ */
+/*
+//ONLY WORKS WITH ONE PARTITION !!!
+struct select_jobinfo {
+    uint32_t job_id;
+    uint32_t action;
+    uint32_t min;
+    uint32_t max;
+    uint32_t preference;
+    uint32_t step;
+    uint32_t currentNodes;
+    uint32_t resultantNodes;
+    char hostlist[2048];
+};
+
+//************************************************************************************
+
+#include <time.h>
+//srand(0);
+
+int get_reconf_size(){
+        int NSIZESSIZE = 3;
+        int RECONFARRAY[] = {1, 2, 4, 8};
+        srand(time(NULL));
+        int index = rand() % NSIZESSIZE;
+        int size = RECONFARRAY[index];
+        return size;
+}
+
+//return random action
+extern int select_p_select_jobinfo_get(select_jobinfo_t *jobinfo,
+        enum select_jobdata_type data_type, void *data) {
+    printf("(sergio): %s(%s,%d) ...scheduling... %d %d %d\n", __FILE__, __func__, __LINE__, jobinfo->action, jobinfo->currentNodes, jobinfo->resultantNodes);
+    if (data_type == SELECT_JOBDATA_INFO) {
+        hostlist_t hl = slurm_hostlist_create(jobinfo->hostlist);
+        char *host = slurm_hostlist_shift(hl);
+        strcpy((char *) data, host);
+        slurm_hostlist_destroy(hl);
+        return SLURM_SUCCESS;
+    } else if (data_type == SELECT_JOBDATA_ACTION) {
+                jobinfo->action = 0;
+                jobinfo->resultantNodes = get_reconf_size();
+                if (jobinfo->resultantNodes > jobinfo->currentNodes) { //expand
+                        jobinfo->action = 1;
+                } else if (jobinfo->resultantNodes < jobinfo->currentNodes) { //shrink
+                        jobinfo->action = 2;
+                } else { //nothing
+                }
+                //printf("(sergio): %s(%s,%d) action %d from %d to %d\n", __FILE__, __func__, __LINE__, jobinfo->action, jobinfo->currentNodes, jobinfo->resultantNodes);
+        }
+    return SLURM_SUCCESS;
+}*/
+
+/*
+ *
+ */
+
 /*
  * get data from a select job credential
  * IN jobinfo  - updated select job credential
  * IN data_type - type of data to enter into job credential
  * OUT data - the data to get from job credential, caller must xfree
  *      data for data_type == SELECT_JOBDATA_PART_ID
- */
+*/
 extern int select_p_select_jobinfo_get (select_jobinfo_t *jobinfo,
 					enum select_jobdata_type data_type,
 					void *data)
 {
+	printf("(sergio): %s(%s,%d) ...scheduling...\n", __FILE__, __func__, __LINE__);
 	return SLURM_ERROR;
 }
 
