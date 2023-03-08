@@ -4078,7 +4078,7 @@ extern int select_p_select_jobinfo_set(select_jobinfo_t *jobinfo,
 /*
  * DMR - Sergio * 
  */
-/*
+
 //ONLY WORKS WITH ONE PARTITION !!!
 struct select_jobinfo {
     uint32_t job_id;
@@ -4098,7 +4098,7 @@ struct select_jobinfo {
 //srand(0);
 
 int get_reconf_size(){
-        int NSIZESSIZE = 3;
+        int NSIZESSIZE = 4;
         int RECONFARRAY[] = {1, 2, 4, 8};
         srand(time(NULL));
         int index = rand() % NSIZESSIZE;
@@ -4109,7 +4109,6 @@ int get_reconf_size(){
 //return random action
 extern int select_p_select_jobinfo_get(select_jobinfo_t *jobinfo,
         enum select_jobdata_type data_type, void *data) {
-    printf("(sergio): %s(%s,%d) ...scheduling... %d %d %d\n", __FILE__, __func__, __LINE__, jobinfo->action, jobinfo->currentNodes, jobinfo->resultantNodes);
     if (data_type == SELECT_JOBDATA_INFO) {
         hostlist_t hl = slurm_hostlist_create(jobinfo->hostlist);
         char *host = slurm_hostlist_shift(hl);
@@ -4128,11 +4127,8 @@ extern int select_p_select_jobinfo_get(select_jobinfo_t *jobinfo,
                 //printf("(sergio): %s(%s,%d) action %d from %d to %d\n", __FILE__, __func__, __LINE__, jobinfo->action, jobinfo->currentNodes, jobinfo->resultantNodes);
         }
     return SLURM_SUCCESS;
-}*/
+}
 
-/*
- *
- */
 
 /*
  * get data from a select job credential
@@ -4140,7 +4136,7 @@ extern int select_p_select_jobinfo_get(select_jobinfo_t *jobinfo,
  * IN data_type - type of data to enter into job credential
  * OUT data - the data to get from job credential, caller must xfree
  *      data for data_type == SELECT_JOBDATA_PART_ID
-*/
+
 extern int select_p_select_jobinfo_get (select_jobinfo_t *jobinfo,
 					enum select_jobdata_type data_type,
 					void *data)
@@ -4148,7 +4144,7 @@ extern int select_p_select_jobinfo_get (select_jobinfo_t *jobinfo,
 	printf("(sergio): %s(%s,%d) ...scheduling...\n", __FILE__, __func__, __LINE__);
 	return SLURM_ERROR;
 }
-
+*/
 /*
  * copy a select job credential
  * IN jobinfo - the select job credential to be copied

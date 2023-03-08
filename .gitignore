@@ -1,3 +1,7 @@
+*.bino
+*.service
+*.map
+scrontab
 *.o
 *.la
 *.lo

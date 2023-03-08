@@ -285,11 +285,14 @@ extern srun_job_t *job_step_create_allocation(
 	ai->step_id.step_id         = NO_VAL;
 	ai->step_id.step_het_comp = NO_VAL;
 	ai->alias_list     = resp->alias_list;
+	/*
 	if (srun_opt->alloc_nodelist)
 		ai->nodelist = xstrdup(srun_opt->alloc_nodelist);
 	else
 		ai->nodelist = xstrdup(resp->node_list);
-
+	*/
+	ai->nodelist = xstrdup(opt_local->nodelist); //DMR - sergio
+	
 	hl = hostlist_create(ai->nodelist);
 	hostlist_uniq(hl);
 	alloc_count = hostlist_count(hl);
